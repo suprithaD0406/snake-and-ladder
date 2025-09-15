@@ -1,0 +1,227 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color scheme for Snake and Ladder game */
+  --background: #ffffff; /* Game board background */
+  --foreground: #4b5563; /* Text color */
+  --card: #f9fafb; /* Card backgrounds */
+  --card-foreground: #4b5563; /* Card text */
+  --popover: #ffffff; /* Popover background */
+  --popover-foreground: #4b5563; /* Popover text */
+  --primary: #0891b2; /* Primary actions, buttons */
+  --primary-foreground: #ffffff; /* Text on primary buttons */
+  --secondary: #f59e0b; /* Secondary actions */
+  --secondary-foreground: #4b5563; /* Text on secondary buttons */
+  --muted: #f9fafb; /* Muted backgrounds */
+  --muted-foreground: #4b5563; /* Muted text */
+  --accent: #f59e0b; /* Accent elements */
+  --accent-foreground: #4b5563; /* Text on accent elements */
+  --destructive: #dc2626; /* Destructive actions */
+  --destructive-foreground: #ffffff; /* Text on destructive actions */
+  --border: #e5e7eb; /* Borders */
+  --input: #f9fafb; /* Input backgrounds */
+  --ring: #0891b2; /* Focus ring */
+  --chart-1: #0891b2; /* Chart color 1 */
+  --chart-2: #f59e0b; /* Chart color 2 */
+  --chart-3: #dc2626; /* Chart color 3 */
+  --chart-4: #a16207; /* Chart color 4 */
+  --chart-5: #4b5563; /* Chart color 5 */
+  --radius: 0.5rem; /* General corner rounding */
+  --sidebar: #ffffff; /* Sidebar background */
+  --sidebar-foreground: #4b5563; /* Sidebar text */
+  --sidebar-primary: #f9fafb; /* Sidebar primary background */
+  --sidebar-primary-foreground: #4b5563; /* Sidebar primary text */
+  --sidebar-accent: #f59e0b; /* Sidebar accent background */
+  --sidebar-accent-foreground: #4b5563; /* Sidebar accent text */
+  --sidebar-border: #e5e7eb; /* Sidebar border */
+  --sidebar-ring: #0891b2; /* Sidebar focus ring */
+}
+
+.dark {
+  --background: #1f2937;
+  --foreground: #f9fafb;
+  --card: #374151;
+  --card-foreground: #f9fafb;
+  --popover: #1f2937;
+  --popover-foreground: #f9fafb;
+  --primary: #06b6d4;
+  --primary-foreground: #1f2937;
+  --secondary: #fbbf24;
+  --secondary-foreground: #1f2937;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #fbbf24;
+  --accent-foreground: #1f2937;
+  --destructive: #ef4444;
+  --destructive-foreground: #f9fafb;
+  --border: #4b5563;
+  --input: #374151;
+  --ring: #06b6d4;
+  --chart-1: #06b6d4;
+  --chart-2: #fbbf24;
+  --chart-3: #ef4444;
+  --chart-4: #d97706;
+  --chart-5: #6b7280;
+  --sidebar: #1f2937;
+  --sidebar-foreground: #f9fafb;
+  --sidebar-primary: #374151;
+  --sidebar-primary-foreground: #f9fafb;
+  --sidebar-accent: #fbbf24;
+  --sidebar-accent-foreground: #1f2937;
+  --sidebar-border: #4b5563;
+  --sidebar-ring: #06b6d4;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added custom animations for gaming theme */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Added game-specific animations */
+@keyframes dice-roll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes player-move {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes snake-bite {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes ladder-climb {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-dice-roll {
+  animation: dice-roll 0.8s ease-in-out;
+}
+
+.animate-player-move {
+  animation: player-move 0.5s ease-in-out;
+}
+
+.animate-snake-bite {
+  animation: snake-bite 0.6s ease-in-out;
+}
+
+.animate-ladder-climb {
+  animation: ladder-climb 0.6s ease-in-out;
+}
